@@ -550,7 +550,7 @@ class IpChanger(Tk):
     # funkce pro spocitani relay podle definovane zeme nebo pro vsechny zeme
     def countRelays(self, country=None):
         if country is not None and country != "random":
-            country = re.sub('[\(\)\{\}<>]', '', country)
+            country = re.sub(r'[\(\)\{\}<>]', '', country)
             cc = 0
             cc2 = 0
 
@@ -1596,11 +1596,11 @@ usage: ipchanger.exe [-a AUTO] [-d] [-m 1-100] [-p] [-c COUNTRY] [-b] [-n] [-u]
             with open('Tor/bridges.txt', 'r') as f:
                 self.bridge = '--UseBridges 1 '
                 if windows:
-                    self.bridge += '--ClientTransportPlugin "obfs2,obfs3,obfs4 exec Tor\obfs4proxy.exe managed" '
-                    self.bridge += '--clientTransportPlugin "meek exec Tor\meek-client" '
+                    self.bridge += '--ClientTransportPlugin "obfs2,obfs3,obfs4 exec Tor\\obfs4proxy.exe managed" '
+                    self.bridge += '--clientTransportPlugin "meek exec Tor\\meek-client" '
                 elif linux:
-                    self.bridge += '--ClientTransportPlugin "obfs2,obfs3,obfs4 exec /usr/bin/obfs4proxy managed" '
-                    self.bridge += '--clientTransportPlugin "meek exec /usr/bin/obfs4proxy" '
+                    self.bridge += '--ClientTransportPlugin "obfs2,obfs3,obfs4 exec Tor\\obfs4proxy.exe managed" '
+                    self.bridge += '--clientTransportPlugin "meek exec Tor\\meek-client" '
                 for line in f:
                     l = line.split('\n')[0]
                     self.bridge += '--Bridge "%s" ' % l
@@ -2257,7 +2257,7 @@ usage: ipchanger.exe [-a AUTO] [-d] [-m 1-100] [-p] [-c COUNTRY] [-b] [-n] [-u]
 
     def countExitNodes(self, country=None):
         if country is not None and country != "random":
-            country = re.sub('[\(\)\{\}<>]', '', country)
+            country = re.sub(r'[\(\)\{\}<>]', '', country)
             cc = 0
             for c in country.replace(",", " ").split():
                 url = "https://onionoo.torproject.org/summary?search=country:%s%%20flag:exit" % str(c)
@@ -2281,7 +2281,7 @@ usage: ipchanger.exe [-a AUTO] [-d] [-m 1-100] [-p] [-c COUNTRY] [-b] [-n] [-u]
 
     def countblacklistIps(self, languagenumber, file, country=None):
         if country is not None and country != "random":
-            country = re.sub('[\(\)\{\}<>]', '', country)
+            country = re.sub(r'[\(\)\{\}<>]', '', country)
             cc = 0
             pocet = 0
             for c in country.replace(",", " ").split():

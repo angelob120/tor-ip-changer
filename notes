@@ -1,0 +1,10 @@
+brew install python-tk
+pip3 install urllib3
+python3 -m venv myenv
+pip install urllib3
+
+python3 -m venv myenv
+source myenv/bin/activate
+
+
+deactivate
